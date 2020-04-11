@@ -2,13 +2,30 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
+
+
+
 ApplicationWindow {
-    id:mainwindow  // если к проекту не планируется обращаться можно без id
+    id:mainwindow
+    signal signalMakeRequest();
+
     visible: true
     width: 480
     height: 640
     title: "Главное окно" // qsTr функция для переключения языка строки.
     color: "black" // Загараживает
+
+
+    Connections{
+    target:  httpController
+    function onSignalSendToQML(pString){
+
+    textaria.append(qString);
+    }
+
+
+
+    }
 
 
     SwipeView {  // расположенны страницы
@@ -17,6 +34,25 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
 
         Page{
+            TextEdit {
+                id: textEdit
+                x: 200
+                y: 567
+                width: 80
+                height: 20
+                text: qsTr("Text Edit")
+                font.pixelSize: 12
+            }
+
+            TextInput {
+                id: textInput
+                x: 13
+                y: 83
+                width: 454
+                height: 390
+                text: qsTr("Text Input")
+                font.pixelSize: 12
+            }
 
 
 
@@ -124,6 +160,116 @@ ApplicationWindow {
 }
 
         }
+
+        Page{
+            id:pgLab1
+            GridLayout{
+
+
+            Button{
+                id: buttonl4
+                text: "GET"
+                width: 100
+                height: 100
+
+            }
+
+            Button{
+                id: btn
+                onCanceled: {
+                    signalMakeRequest();
+
+                }
+
+
+                text: "GET"
+                width: 100
+                height: 100
+                x: 100
+                y: 100
+            }
+
+
+            TextArea {
+                id: textaria
+                x: 200
+                y: 400
+                width: 200
+                height: 200
+                text: qsTr("Text Edit")
+                font.pixelSize: 12
+                 }
+                TextEdit {
+                    id: text2
+                    x: 200
+                    y: 567
+                    width: 80
+                    height: 20
+                    text: qsTr("Text Edit")
+                    font.pixelSize: 12
+                }
+
+
+
+
+        }
+}
+
+
+
+        Page{
+            id:pgLab5
+            GridLayout{
+
+
+            Button{
+                id: buttonl5
+                text: "GET"
+                width: 100
+                height: 100
+
+            }
+
+            Button{
+                id: btn5
+                onCanceled: {
+
+                }
+
+
+                text: "GET"
+                width: 100
+                height: 100
+                x: 100
+                y: 100
+            }
+
+
+            TextArea {
+                id: textaria5
+                x: 200
+                y: 400
+                width: 200
+                height: 200
+                text: qsTr("Text Edit")
+                font.pixelSize: 12
+                 }
+                TextEdit {
+                    id: text25
+                    x: 200
+                    y: 567
+                    width: 80
+                    height: 20
+                    text: qsTr("Text Edit")
+                    font.pixelSize: 12
+                }
+
+
+
+
+        }
+}
+
     }
 
     footer: TabBar {
@@ -140,6 +286,12 @@ ApplicationWindow {
 
         TabButton {
             text: qsTr("Page 3")
+        }
+        TabButton {
+            text: qsTr("LB4")
+        }
+        TabButton {
+            text: qsTr("LB5")
         }
     }
 }

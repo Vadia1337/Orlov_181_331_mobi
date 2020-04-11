@@ -1,5 +1,5 @@
 #Список подкл. разделов библиотеки QT (Работа с сетью и с др.)
-QT += quick
+QT += quick network
 #Настройки компиляции
 CONFIG += c++11
 
@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Раздел файлов исходного кода на С++
 SOURCES += \
+       httpcontroller.cpp \
        main.cpp
 
 
@@ -37,3 +38,6 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+HEADERS += \
+    httpcontroller.h
